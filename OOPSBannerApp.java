@@ -1,45 +1,31 @@
 /**
- * OOPSBannerApp - Use Case 3
- * Refactoring code to be modular using functions for each character.
+ * OOPSBannerApp - Use Case 4
+ * Defining a separate class to store character patterns.
  * @author DELL
- * @version 3.0
+ * @version 4.0
  */
-public class OOPSBannerApp {
 
-    public static void main(String[] args) {
-        displayOOPS();
-    }
-
-    public static void displayOOPS() {
-        // Calling modular functions
-        drawO();
-        drawO();
-        drawP();
-        drawS();
-    }
-
+// This class acts as a template for our banner data
+class BannerPattern {
     public static void drawO() {
-        System.out.println("  *** ");
-        System.out.println(" * * ");
-        System.out.println(" * * ");
-        System.out.println("  *** ");
-        System.out.println(); // Space between letters
+        System.out.println("  *** \n * * \n * * \n  *** ");
     }
 
     public static void drawP() {
-        System.out.println(" **** ");
-        System.out.println(" * * ");
-        System.out.println(" **** ");
-        System.out.println(" * ");
-        System.out.println();
+        System.out.println(" **** \n * * \n **** \n * ");
     }
 
     public static void drawS() {
-        System.out.println("  **** ");
-        System.out.println(" * ");
-        System.out.println("  *** ");
-        System.out.println("     * ");
-        System.out.println(" **** ");
-        System.out.println();
+        System.out.println("  **** \n * \n  *** \n     * \n **** ");
+    }
+}
+
+public class OOPSBannerApp {
+    public static void main(String[] args) {
+        // Now we call the methods from the BannerPattern class
+        BannerPattern.drawO();
+        BannerPattern.drawO();
+        BannerPattern.drawP();
+        BannerPattern.drawS();
     }
 }
