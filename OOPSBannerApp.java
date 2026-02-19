@@ -1,17 +1,45 @@
 /**
- * OOPSBannerApp - Use Case 1
- * Foundational step to print "OOPS" to the console.
+ * OOPSBannerApp - Use Case 3
+ * Refactoring code to be modular using functions for each character.
  * @author DELL
- * @version 1.0
+ * @version 3.0
  */
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
-        // Core Logic: Printing literal text
-        printSimpleOOPS();
+        displayOOPS();
     }
 
-    public static void printSimpleOOPS() {
-        System.out.println("OOPS");
+    public static void displayOOPS() {
+        // Calling modular functions
+        drawO();
+        drawO();
+        drawP();
+        drawS();
+    }
+
+    public static void drawO() {
+        System.out.println("  *** ");
+        System.out.println(" * * ");
+        System.out.println(" * * ");
+        System.out.println("  *** ");
+        System.out.println(); // Space between letters
+    }
+
+    public static void drawP() {
+        System.out.println(" **** ");
+        System.out.println(" * * ");
+        System.out.println(" **** ");
+        System.out.println(" * ");
+        System.out.println();
+    }
+
+    public static void drawS() {
+        System.out.println("  **** ");
+        System.out.println(" * ");
+        System.out.println("  *** ");
+        System.out.println("     * ");
+        System.out.println(" **** ");
+        System.out.println();
     }
 }
