@@ -1,31 +1,38 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * OOPSBannerApp - Use Case 4
- * Defining a separate class to store character patterns.
+ * OOPSBannerApp - Use Case 5
+ * Using a Map to store patterns and a function to display the banner.
  * @author DELL
- * @version 4.0
+ * @version 5.0
  */
-
-// This class acts as a template for our banner data
-class BannerPattern {
-    public static void drawO() {
-        System.out.println("  *** \n * * \n * * \n  *** ");
-    }
-
-    public static void drawP() {
-        System.out.println(" **** \n * * \n **** \n * ");
-    }
-
-    public static void drawS() {
-        System.out.println("  **** \n * \n  *** \n     * \n **** ");
-    }
-}
-
 public class OOPSBannerApp {
+
+    // A Map to store our character patterns
+    private static final Map<Character, String> patterns = new HashMap<>();
+
+    static {
+        // Initialize the patterns
+        patterns.put('O', "  *** \n * * \n * * \n  *** ");
+        patterns.put('P', " **** \n * * \n **** \n * ");
+        patterns.put('S', "  **** \n * \n  *** \n     * \n **** ");
+    }
+
     public static void main(String[] args) {
-        // Now we call the methods from the BannerPattern class
-        BannerPattern.drawO();
-        BannerPattern.drawO();
-        BannerPattern.drawP();
-        BannerPattern.drawS();
+        String word = "OOPS";
+        displayBanner(word);
+    }
+
+    /**
+     * Logic to look up patterns and display them
+     */
+    public static void displayBanner(String input) {
+        for (char c : input.toUpperCase().toCharArray()) {
+            if (patterns.containsKey(c)) {
+                System.out.println(patterns.get(c));
+                System.out.println(); // Space between letters
+            }
+        }
     }
 }
