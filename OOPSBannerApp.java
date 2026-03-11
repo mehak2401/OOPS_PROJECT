@@ -1,46 +1,39 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class OOPSBannerApp {
 
-    // UC7: Static Inner Class for Encapsulation
-    static class CharacterPattern {
-        private char character;
-        private String[] pattern;
+    // Centralized Map to store character patterns
+    private static final Map<Character, String[]> patternMap = new HashMap<>();
 
-        public CharacterPattern(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        public String getRow(int rowIndex) {
-            // Using padding logic from UC6 to keep alignment perfect
-            return String.format("%-12s", pattern[rowIndex]);
-        }
+    static {
+        // Initialize the "database" of patterns
+        patternMap.put('O', new String[]{"  *** ", " *   * ", " *   * ", " *   * ", " *   * ", " *   * ", "  *** "});
+        patternMap.put('P', new String[]{" ***** ", " *   * ", " *   * ", " ***** ", " * ", " * ", " * "});
+        patternMap.put('S', new String[]{"  **** ", " * ", " * ", "  *** ", "     *", "     *", " **** "});
     }
 
     public static void main(String[] args) {
-        // Initialize our "Database" of character patterns
-        CharacterPattern charO = new CharacterPattern('O', new String[]{
-            "  *** ", " *   * ", " *   * ", " *   * ", " *   * ", " *   * ", "  *** "
-        });
+        String word = "OOPS";
+        renderBanner(word);
+    }
 
-        CharacterPattern charP = new CharacterPattern('P', new String[]{
-            " **** ", " *  * ", " *  * ", " **** ", " * ", " * ", " * "
-        });
-
-        CharacterPattern charS = new CharacterPattern('S', new String[]{
-            "  **** ", " * ", " * ", "  *** ", "     *", "     *", " **** "
-        });
-
-        // Use a StringBuilder for efficient string manipulation
-        for (int i = 0; i < 7; i++) {
-            StringBuilder sb = new StringBuilder();
-            String gap = "  ";
+    public static void renderBanner(String word) {
+        // We iterate 7 times (once for each row of the ASCII art)
+        for (int row = 0; row < 7; row++) {
+            StringBuilder lineResult = new StringBuilder();
             
-            sb.append(charO.getRow(i)).append(gap);
-            sb.append(charO.getRow(i)).append(gap);
-            sb.append(charP.getRow(i)).append(gap);
-            sb.append(charS.getRow(i));
-
-            System.out.println(sb.toString());
+            // Loop through each character in the input word
+            for (char c : word.toCharArray()) {
+                String[] pattern = patternMap.get(c);
+                
+                if (pattern != null) {
+                    // Use padding to ensure perfect horizontal alignment
+                    lineResult.append(String.format("%-15s", pattern[row]));
+                }
+            }
+            // Print the fully assembled row
+            System.out.println(lineResult.toString());
         }
     }
 }
