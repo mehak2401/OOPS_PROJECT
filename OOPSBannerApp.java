@@ -1,35 +1,46 @@
 public class OOPSBannerApp {
 
-    public static void main(String[] args) {
-        for (int i = 0; i < 7; i++) {
-            System.out.println(getRow(i));
+    // UC7: Static Inner Class for Encapsulation
+    static class CharacterPattern {
+        private char character;
+        private String[] pattern;
+
+        public CharacterPattern(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
+
+        public String getRow(int rowIndex) {
+            // Using padding logic from UC6 to keep alignment perfect
+            return String.format("%-12s", pattern[rowIndex]);
         }
     }
 
-    public static String getRow(int index) {
-        // We use a small gap because the padding below handles the heavy lifting
-        String gap = "  "; 
-        return pad(getO()[index]) + gap + 
-               pad(getO()[index]) + gap + 
-               pad(getP()[index]) + gap + 
-               pad(getS()[index]);
-    }
+    public static void main(String[] args) {
+        // Initialize our "Database" of character patterns
+        CharacterPattern charO = new CharacterPattern('O', new String[]{
+            "  *** ", " *   * ", " *   * ", " *   * ", " *   * ", " *   * ", "  *** "
+        });
 
-    // Forces every letter to be 15 characters wide.
-    // This creates a huge "buffer" of empty space on the right of every letter.
-    public static String pad(String s) {
-        return String.format("%-15s", s);
-    }
+        CharacterPattern charP = new CharacterPattern('P', new String[]{
+            " **** ", " *  * ", " *  * ", " **** ", " * ", " * ", " * "
+        });
 
-    public static String[] getO() {
-        return new String[]{"  *** ", " *   * ", " *   * ", " *   * ", " *   * ", " *   * ", "  *** "};
-    }
+        CharacterPattern charS = new CharacterPattern('S', new String[]{
+            "  **** ", " * ", " * ", "  *** ", "     *", "     *", " **** "
+        });
 
-    public static String[] getP() {
-        return new String[]{" ***** ", " *   *", " *   *", " ***** ", " * ", " * ", " * "};
-    }
+        // Use a StringBuilder for efficient string manipulation
+        for (int i = 0; i < 7; i++) {
+            StringBuilder sb = new StringBuilder();
+            String gap = "  ";
+            
+            sb.append(charO.getRow(i)).append(gap);
+            sb.append(charO.getRow(i)).append(gap);
+            sb.append(charP.getRow(i)).append(gap);
+            sb.append(charS.getRow(i));
 
-    public static String[] getS() {
-        return new String[]{"  **** ", " * ", " * ", "  *** ", "     * ", "     * ", " **** "};
+            System.out.println(sb.toString());
+        }
     }
 }
